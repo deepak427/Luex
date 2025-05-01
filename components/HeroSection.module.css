@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 90vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +21,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.4); /* slight dark overlay for text readability */
   z-index: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
 }
 
 .content {
@@ -68,7 +69,7 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .hero {
-    height: 70vh;
+    height: calc(100dvh - 4rem - 1.5rem);
     padding: 2rem 1rem;
   }
 

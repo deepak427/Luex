@@ -46,7 +46,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #111;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .price {
@@ -161,9 +161,24 @@
   }
 
   .imageSection {
-    padding: 2rem;
-    max-height: none;
-    overflow-y: visible;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem 0; /* Remove left/right padding */
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .image {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+    border-radius: 20px;
+    object-fit: contain;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   }
 
   .detailsSection {
