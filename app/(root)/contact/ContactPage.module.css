@@ -1,0 +1,45 @@
+.contactSection {
+  background-color: #f5f4f0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Playfair Display", serif;
+  color: #2e2e2e;
+  min-height: 80vh;
+}
+
+.contentWrapper {
+  max-width: 800px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 60px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.heading {
+  font-size: 42px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #1e1e1e;
+}
+
+.subheading {
+  font-size: 20px;
+  margin-bottom: 32px;
+  color: #6d6d6d;
+}
+
+.email {
+  font-size: 22px;
+  font-weight: 500;
+  color: #3a3a3a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.email:hover {
+  color: #9c7e6a;
+  text-decoration: underline;
+}

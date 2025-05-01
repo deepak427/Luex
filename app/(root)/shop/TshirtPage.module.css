@@ -1,0 +1,208 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* IMAGE SECTION */
+.imageSection {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4rem 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  background-color: #e7e7e7;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.imageSection::-webkit-scrollbar {
+  display: none;
+}
+
+.image {
+  border-radius: 20px;
+  object-fit: contain;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+/* DETAILS SECTION */
+.detailsSection {
+  flex: 0 0 40%;
+  padding: 4rem 2rem;
+  background-color: #e7e7e7;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.label {
+  margin: 0.5rem 0;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #222;
+}
+
+.select {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #000;
+  border: 1px solid #aaa;
+  margin-bottom: 1rem;
+}
+
+.button {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 14px 30px;
+  border-radius: 9999px;
+  margin-top: 1rem;
+  width: fit-content;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #333333;
+  color: #f4f4f4;
+}
+
+.designOptions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.designImage {
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.designImage:hover {
+  background-color: #d4d4d4;
+}
+
+.active {
+  border-color: #000;
+}
+
+.stockInfo {
+  margin: 0.5rem 0;
+}
+
+.progressBarOuter {
+  width: 100%;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progressBarInner {
+  height: 100%;
+  background-color: #000;
+  width: 0;
+  transition: width 0.4s ease;
+}
+
+.stockText {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  color: #333;
+}
+
+.soldOutButton {
+  background-color: #ccc;
+  color: #555;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: not-allowed;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+/* --------------------------------------------
+   RESPONSIVENESS
+-------------------------------------------- */
+
+/* Tablets and below */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imageSection {
+    padding: 2rem;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .detailsSection {
+    padding: 2rem;
+    flex: none;
+  }
+}
+
+/* Phones */
+@media (max-width: 768px) {
+  .imageSection {
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  .detailsSection {
+    padding: 1.5rem;
+  }
+
+  .title,
+  .price {
+    font-size: 1.1rem;
+  }
+
+  .label,
+  .select,
+  .stockText {
+    font-size: 0.95rem;
+  }
+
+  .button,
+  .soldOutButton {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .designOptions {
+    justify-content: center;
+  }
+}
