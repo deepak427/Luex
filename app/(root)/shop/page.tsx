@@ -13,6 +13,8 @@ export default function ShopPage() {
 
   const router = useRouter();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const designImages = [
     [
       "/white_front_t-shirt_with_tag_mockup_close_up-no-bg.webp",
@@ -61,8 +63,12 @@ export default function ShopPage() {
         ))}
       </section>
       <section className={styles.detailsSection}>
-        <h2 className={styles.title}>LUEX LIMITED EDITION LOOSE FIT PRINTED T-SHIRT</h2>
-        <p>{!design ? "Kaiju VIII | Ghost Front" : "Kaiju VIII | Reign Back"}</p>
+        <h2 className={styles.title}>
+          LUEX LIMITED EDITION LOOSE FIT PRINTED T-SHIRT
+        </h2>
+        <p>
+          {!design ? "Kaiju VIII | Ghost Front" : "Kaiju VIII | Reign Back"}
+        </p>
         <h2 className={styles.price}>RS. 799.00</h2>
 
         <label className={styles.label}>DESIGN: Ghost Front / Reign Back</label>
@@ -72,7 +78,9 @@ export default function ShopPage() {
             alt="Design 1"
             width={65}
             height={80}
-            className={`${styles.designImage} ${design === 0 ? styles.active : ""}`}
+            className={`${styles.designImage} ${
+              design === 0 ? styles.active : ""
+            }`}
             onClick={() => setDesign(0)}
           />
           <Image
@@ -80,7 +88,9 @@ export default function ShopPage() {
             alt="Design 2"
             width={65}
             height={80}
-            className={`${styles.designImage} ${design === 1 ? styles.active : ""}`}
+            className={`${styles.designImage} ${
+              design === 1 ? styles.active : ""
+            }`}
             onClick={() => setDesign(1)}
           />
         </div>
@@ -93,9 +103,11 @@ export default function ShopPage() {
             />
           </div>
           <p className={styles.stockText}>
-            {stockLeft > 0
-              ? `${stockLeft} out of ${totalStock} left`
-              : "Sold Out"}
+            {totalStock > 0
+              ? stockLeft > 0
+                ? `${stockLeft} out of ${totalStock} left`
+                : "Sold Out"
+              : "loading"}
           </p>
         </div>
 
@@ -111,20 +123,29 @@ export default function ShopPage() {
           <option>XL</option>
           <option>XXL</option>
         </select>
-        {stockLeft > 0 ? (
-          <button
-            className={styles.button}
-            onClick={() =>
-              router.push(
-                `/preorder?design=${design}&size=${encodeURIComponent(size)}`
-              )
-            }
-          >
-            Pre-Order Now
-          </button>
+        {totalStock > 0 ? (
+          stockLeft > 0 ? (
+            <button
+              className={styles.button}
+              disabled={isSubmitting}
+              onClick={() => {
+                if (isSubmitting) return;
+                setIsSubmitting(true);
+                router.push(
+                  `/preorder?design=${design}&size=${encodeURIComponent(size)}`
+                );
+              }}
+            >
+              {isSubmitting ? "Processing..." : "Pre-Order Now"}
+            </button>
+          ) : (
+            <button className={styles.soldOutButton} disabled>
+              SOLD OUT
+            </button>
+          )
         ) : (
           <button className={styles.soldOutButton} disabled>
-            SOLD OUT
+            LOADING
           </button>
         )}
       </section>

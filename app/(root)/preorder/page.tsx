@@ -3,15 +3,14 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "./PreOrderPage.module.css";
-
-import { useRouter } from "next/navigation"; // Add this at the top
+import { useRouter } from "next/navigation";
 
 export default function PreOrderPage() {
   const searchParams = useSearchParams();
   const design = searchParams.get("design") || "0";
   const size = searchParams.get("size") || "Small";
 
-  const router = useRouter(); 
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -21,6 +20,7 @@ export default function PreOrderPage() {
 
   const [selectedDesign, setSelectedDesign] = useState(design);
   const [selectedSize, setSelectedSize] = useState(size);
+  const [isSubmitting, setIsSubmitting] = useState(false); // ✅ Add loading state
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,6 +30,9 @@ export default function PreOrderPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return; //
+
+    setIsSubmitting(true); // 
 
     try {
       const res = await fetch("/api/orders", {
@@ -45,13 +48,14 @@ export default function PreOrderPage() {
       });
 
       if (res.ok) {
-        // Redirect with success flag
         router.push("/?thankyou=true");
       } else {
         console.log("Failed to submit order.");
+        setIsSubmitting(false); // Allow retry
       }
     } catch (error) {
       console.error("Error submitting order:", error);
+      setIsSubmitting(false); // Allow retry
     }
   };
 
@@ -108,8 +112,12 @@ export default function PreOrderPage() {
             className={styles.textarea}
             rows={4}
           />
-          <button type="submit" className={styles.button}>
-            Submit Pre-Order
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={isSubmitting} 
+          >
+            {isSubmitting ? "Submitting..." : "Submit Pre-Order"}
           </button>
         </form>
       </div>
