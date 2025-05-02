@@ -167,7 +167,7 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     gap: 1rem;
-    padding: 1rem 0; /* Remove left/right padding */
+    padding: 1rem; /* Remove left/right padding */
     margin-left: auto;
     margin-right: auto;
     -webkit-overflow-scrolling: touch;
