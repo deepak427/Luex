@@ -1,8 +1,9 @@
 .container {
   padding: 4rem;
   background: #f8f8f8;
-  display: grid;
+  display: flex;
   min-height: 100dvh;
+  justify-content: center;
 }
 
 .heading {
