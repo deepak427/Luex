@@ -1,10 +1,17 @@
-'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-import styles from './Navbar.module.css';
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import styles from "./Navbar.module.css";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className={styles.header}>
@@ -21,11 +28,19 @@ export default function Navbar() {
           &#9776;
         </button>
 
-        <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ''}`}>
-          <li><Link href="/shop">Shop</Link></li>
-          <li><Link href="/shop">Collections</Link></li>
-          <li><Link href="/about">About</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
+        <ul className={`${styles.navLinks} ${menuOpen ? styles.show : ""}`}>
+          <li>
+            <Link href="/shop">Shop</Link>
+          </li>
+          <li>
+            <Link href="/shop">Collections</Link>
+          </li>
+          <li>
+            <Link href="/about">About</Link>
+          </li>
+          <li>
+            <Link href="/contact">Contact</Link>
+          </li>
         </ul>
 
         <div className={styles.actions}>
